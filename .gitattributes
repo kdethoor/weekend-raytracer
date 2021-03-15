@@ -1,0 +1,12 @@
+# End-of-line normalization
+* text=auto
+
+# Text files
+.gitattributes text
+.gitignore     text
+
+*.txt          text
+*.md           text
+
+*.h            text 
+*.cpp          text
