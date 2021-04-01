@@ -29,3 +29,20 @@ If `t > 0`, we often talk of a half-line or a ray.
 
 * Work with a non-square to avoid making mistakes by transposing `x` and `y`.
 * Get a simple camera  and a `ray_color(ray)` function that returns the color of the background up and running quickly, in order to debug mor easily.
+
+## Implementation
+`ray_color(ray)` linearly blends white and blue according to the _linear interpolation_ (_lerp_ for short) formula:
+```
+blended_value = (1-t)*start_value + t * end_valie
+```
+In the case of `ray_color(ray)`, `t` depends on the ray's normalized `y`, which means:
+
+- there is a vertical white-to-blue gradient,
+- there is also a horizontal gradient , since `t` depends on the normalized `y`, which changes, for a same `y`, if `x` changes, since the norm depends on `x` and `y`; this gradient is more pronounced on the sides because the norm varies more per unit of `x` as one gets away from the center.
+
+
+Remark: we accept the fact we aren't reaching the center of each pixel as we'll add anti-aliasing later - while I understand we should try to calculate the color at the center of a pixel to best approximate its color, I do not see yet how anti-aliasing helps...
+
+Result:
+
+![gradient example](images/04_gradient.png)
